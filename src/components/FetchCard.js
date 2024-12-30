@@ -3,13 +3,13 @@ import { Grid, Card, CardContent, Typography, CircularProgress, Alert, Box } fro
 import CardPagination from './CardPagination';
 
 const FetchCard = () => {
-  const [data, setData] = useState([]); // State to store fetched data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
-  const [currentPage, setCurrentPage] = useState(1); // Current page state
-  const itemsPerPage = 3; // Number of cards per page
+  const [data, setData] = useState([]); 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); 
+  const [currentPage, setCurrentPage] = useState(1); 
+  const itemsPerPage = 3; 
 
-  // Fetch data from API when component mounts
+
   useEffect(() => {
     const fetchData = async () => {
       const url = 'https://api.freeapi.app/api/v1/public/stocks';
@@ -20,17 +20,17 @@ const FetchCard = () => {
           throw new Error('Network response was not ok');
         }
         const result = await response.json();
-        setData(result.data.data); // Update data with API response
+        setData(result.data.data); 
         setLoading(false);
       } catch (error) {
-        setError(error.message); // Handle errors
+        setError(error.message); 
         setLoading(false);
       }
     };
     fetchData();
-  }, []); // Empty dependency array means this runs once when component mounts
+  }, []); 
 
-  // Calculate data for the current page
+  
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = data.slice(startIndex, endIndex);
@@ -47,10 +47,10 @@ const FetchCard = () => {
       padding={2}
       sx={{
         backgroundImage: 'url("https://images.moneycontrol.com/static-mcnews/2021/05/stocks_sensex_nifty_stockmarket3-770x433.jpg?impolicy=website&width=770&height=431")', // Set your background image URL here
-        backgroundSize: 'cover', // Ensures the image covers the entire area
-        backgroundPosition: 'center', // Centers the image
-        backgroundRepeat: 'no-repeat', // Prevents the image from repeating
-        minHeight: '100vh', // Ensures full viewport height
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center', 
+        backgroundRepeat: 'no-repeat', 
+        minHeight: '100vh', 
       }}
     >
       <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 'bold', color: '#ffffff' }}>
@@ -63,10 +63,10 @@ const FetchCard = () => {
               className="stock-card"
               elevation={3}
               sx={{
-                borderRadius: '8px', // Rounded corners
-                backgroundColor: '#ffffff', // White background for the card
-                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', // Soft shadow
-                '&:hover': { boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.2)' }, // Hover effect
+                borderRadius: '8px', 
+                backgroundColor: '#ffffff', 
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+                '&:hover': { boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.2)' }, 
               }}
             >
               <CardContent>
@@ -116,7 +116,7 @@ const FetchCard = () => {
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         onPageChange={setCurrentPage}
-        sx={{ marginTop: 3 }} // Space between cards and pagination
+        sx={{ marginTop: 3 }}
       />
     </Box>
   );
